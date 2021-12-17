@@ -255,7 +255,7 @@ class MIME::Type
 
   # The computed priority value. This is _not_ intended to be used
   # by most callers.
-  attr_reader :__priority
+  attr_reader :__priority #:nodoc:
 
   # Returns the whole MIME content-type string.
   #
