@@ -86,7 +86,7 @@ describe MIME::Types, "registry" do
       assert_equal %w[image/jpeg], MIME::Types.of(["foo.jpeg", "bar.jpeg"])
     end
 
-    it "finds multiple extensions" do
+    it "finds multiple extensions ordered by the filename list" do
       assert_equal %w[text/plain image/jpeg], MIME::Types.type_for(%w[foo.txt foo.jpeg])
     end
 

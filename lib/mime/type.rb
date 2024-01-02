@@ -206,7 +206,7 @@ class MIME::Type
   # consumers of mime-types. For the next major version of MIME::Types, this
   # method will become #<=> and #priority_compare will be removed.
   def priority_compare(other)
-    if (cmp = __sort_priority <=> other.__sort_priority).zero?
+    if (cmp = __sort_priority <=> other.__sort_priority) == 0
       simplified <=> other.simplified
     else
       cmp
@@ -705,15 +705,15 @@ class MIME::Type
   # 16, to a minimum of 0.
   def update_sort_priority
     extension_count = @extensions.length
-    obsolete = instance_variable_defined?(:@obsolete) && @obsolete ? 1 << 7 : 0
-    provisional = instance_variable_defined?(:@provisional) && @provisional ? 1 << 6 : 0
-    registered = instance_variable_defined?(:@registered) && @registered ? 0 : 1 << 5
+    obsolete = (instance_variable_defined?(:@obsolete) && @obsolete) ? 1 << 7 : 0
+    provisional = (instance_variable_defined?(:@provisional) && @provisional) ? 1 << 6 : 0
+    registered = (instance_variable_defined?(:@registered) && @registered) ? 0 : 1 << 5
     complete = extension_count.nonzero? ? 0 : 1 << 4
     extension_count = [0, 16 - extension_count].max
 
     @__sort_priority = obsolete | registered | provisional | complete | extension_count
-    @__priority_penalty = (instance_variable_defined?(:@obsolete) && @obsolete ? 3 : 0) +
-      (instance_variable_defined?(:@registered) && @registered ? 0 : 2)
+    @__priority_penalty = ((instance_variable_defined?(:@obsolete) && @obsolete) ? 3 : 0) +
+      ((instance_variable_defined?(:@registered) && @registered) ? 0 : 2)
   end
 
   def __priority_penalty

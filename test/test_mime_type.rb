@@ -322,11 +322,11 @@ describe MIME::Type do
 
   describe "#priority_compare" do
     def priority(type)
-      "#{type} (#{("%08b" % type.__sort_priority).split(//).join(" ")})"
+      "#{type} (#{("%08b" % type.__sort_priority).chars.join(" ")})"
     end
 
     def assert_priority_less(left, right)
-      assert_equal -1, left.priority_compare(right), "#{priority(left)} is not less than #{priority(right)}"
+      assert_equal(-1, left.priority_compare(right), "#{priority(left)} is not less than #{priority(right)}")
     end
 
     def assert_priority_same(left, right)
@@ -367,7 +367,6 @@ describe MIME::Type do
       assert_priority text_1, text_1p, text_1b
     end
 
-
     it "sorts (3) based on the registration state" do
       text_1.registered = text_1p.registered = true
       text_1b = mime_type(text_1) { |t| t.registered = false }
@@ -381,7 +380,6 @@ describe MIME::Type do
 
       assert_priority text_1, text_1p, text_1b
     end
-
 
     it "sorts (5) based on the use-instead value" do
       text_1.obsolete = text_1p.obsolete = true
@@ -401,7 +399,6 @@ describe MIME::Type do
 
       assert_priority_less text_1, text_2
     end
-
   end
 
   describe "#raw_media_type" do
