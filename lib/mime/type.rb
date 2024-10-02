@@ -187,8 +187,8 @@ class MIME::Type
 
   # Compares the +other+ MIME::Type against the exact content type or the
   # simplified type (the simplified type will be used if comparing against
-  # something that can be treated as a String with #to_s). In comparisons,
-  # this is done against the lowercase version of the MIME::Type.
+  # something that can be treated as a String with #to_s). In comparisons, this
+  # is done against the lowercase version of the MIME::Type.
   #
   # Note that this implementation of #<=> is deprecated and will be changed
   # in the next major version to be the same as #priority_compare.

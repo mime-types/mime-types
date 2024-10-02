@@ -1,8 +1,8 @@
 ---
 exclude: !ruby/regexp '/
   \.(?:
-    tmp
-    | swp
+    tmp |
+    swp
   )$
   |
   \.(?:
@@ -18,7 +18,8 @@ exclude: !ruby/regexp '/
   [gG]emfile(?:\.lock)?
   |
   (?:
-    support
+    support |
+    research
   )\/
   |
   \b(?i:TAGS)$
